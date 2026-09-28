@@ -3,4 +3,5 @@
     <string name="test_text">구구단 입력 후 버튼 클릭</string>
     <string name="edit_text_hint">단입력 ex)2단</string>
     <string name="button_text">구구단 출력</string>
+    <string name="null_text">null</string>
 </resources>

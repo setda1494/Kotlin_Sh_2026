@@ -5,7 +5,6 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -34,22 +33,20 @@ class MainActivity : AppCompatActivity() {
 
         btnOutput.setOnClickListener {
             val strDan = edtDan.text.toString().trim()
-
-            val danNumber = strDan.replace(Regex("[^0-9]"), "").toIntOrNull()
+            val danNumber = strDan.toIntOrNull()
 
             if (danNumber == null) {
-                Toast.makeText(this, "단을 입력해 주세요.", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
+                tvResult.text = getString(R.string.null_text)
+            } else {
+                val resultBuilder = StringBuilder()
+                resultBuilder.append("< $danNumber 단 >\n\n")
+
+                for (i in 1..9) {
+                    resultBuilder.append("$danNumber x $i = ${danNumber * i}\n")
+                }
+
+                tvResult.text = resultBuilder.toString().trimEnd()
             }
-
-            val resultBuilder = StringBuilder()
-            resultBuilder.append("< $danNumber 단 >\n\n")
-
-            for (i in 1..9) {
-                resultBuilder.append("$danNumber x $i = ${danNumber * i}\n")
-            }
-
-            tvResult.text = resultBuilder.toString().trimEnd()
         }
     }
 }
