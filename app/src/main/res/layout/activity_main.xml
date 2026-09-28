@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:autofillHints=""
         android:hint="@string/edit_text_hint"
-        android:inputType="text"
+        android:inputType="number"
         android:minHeight="48dp" />
 
     <Button
