@@ -26,26 +26,35 @@ class MainActivity : AppCompatActivity() {
         val btnOutput = findViewById<Button>(R.id.btnOutput)
         val tvResult = findViewById<TextView>(R.id.tvResult)
 
-        edtDan.setOnClickListener {
-            val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
-            imm.showSoftInput(edtDan, 0)
+        edtDan?.setOnClickListener {
+            try {
+                val imm = getSystemService(INPUT_METHOD_SERVICE) as? InputMethodManager
+                imm?.showSoftInput(edtDan, 0)
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
         }
 
-        btnOutput.setOnClickListener {
-            val strDan = edtDan.text.toString().trim()
-            val danNumber = strDan.toIntOrNull()
+        btnOutput?.setOnClickListener {
+            try {
+                val strDan = edtDan?.text?.toString()?.trim() ?: ""
+                val danNumber = strDan.toIntOrNull()
 
-            if (danNumber == null) {
-                tvResult.text = getString(R.string.null_text)
-            } else {
-                val resultBuilder = StringBuilder()
-                resultBuilder.append("< $danNumber 단 >\n\n")
+                if (danNumber == null) {
+                    tvResult?.text = getString(R.string.null_text)
+                } else {
+                    val resultBuilder = StringBuilder()
+                    resultBuilder.append("< $danNumber 단 >\n\n")
 
-                for (i in 1..9) {
-                    resultBuilder.append("$danNumber x $i = ${danNumber * i}\n")
+                    for (i in 1..9) {
+                        resultBuilder.append("$danNumber x $i = ${danNumber * i}\n")
+                    }
+
+                    tvResult?.text = resultBuilder.toString().trimEnd()
                 }
-
-                tvResult.text = resultBuilder.toString().trimEnd()
+            } catch (e: Exception) {
+                e.printStackTrace()
+                tvResult?.text = getString(R.string.null_text)
             }
         }
     }
