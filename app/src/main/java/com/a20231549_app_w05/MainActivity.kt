@@ -1,9 +1,11 @@
 package com.a20231549_app_w05
 
 import android.os.Bundle
+import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -22,10 +24,40 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
+        val layoutGugudan = findViewById<LinearLayout>(R.id.layoutGugudan)
+        val layoutGreeting = findViewById<LinearLayout>(R.id.layoutGreeting)
+
         val edtDan = findViewById<EditText>(R.id.edtDan)
         val btnOutput = findViewById<Button>(R.id.btnOutput)
         val tvResult = findViewById<TextView>(R.id.tvResult)
 
+        val edtName = findViewById<EditText>(R.id.edtName)
+        val btnGreeting = findViewById<Button>(R.id.btnGreeting)
+        val tvGreetingResult = findViewById<TextView>(R.id.tvGreetingResult)
+
+        val btnTab1 = findViewById<Button>(R.id.btnTab1)
+        val btnTab2 = findViewById<Button>(R.id.btnTab2)
+
+        // 탭 전환 이벤트
+        btnTab1?.setOnClickListener {
+            try {
+                layoutGugudan?.visibility = View.VISIBLE
+                layoutGreeting?.visibility = View.GONE
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+
+        btnTab2?.setOnClickListener {
+            try {
+                layoutGugudan?.visibility = View.GONE
+                layoutGreeting?.visibility = View.VISIBLE
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+
+        // 소프트 키패드 자동 팝업
         edtDan?.setOnClickListener {
             try {
                 val imm = getSystemService(INPUT_METHOD_SERVICE) as? InputMethodManager
@@ -35,6 +67,16 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        edtName?.setOnClickListener {
+            try {
+                val imm = getSystemService(INPUT_METHOD_SERVICE) as? InputMethodManager
+                imm?.showSoftInput(edtName, 0)
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+
+        // 1번 앱: 구구단 출력
         btnOutput?.setOnClickListener {
             try {
                 val strDan = edtDan?.text?.toString()?.trim() ?: ""
@@ -55,6 +97,22 @@ class MainActivity : AppCompatActivity() {
             } catch (e: Exception) {
                 e.printStackTrace()
                 tvResult?.text = getString(R.string.null_text)
+            }
+        }
+
+        // 2번 앱: 인사 출력 ("안녕 XXX")
+        btnGreeting?.setOnClickListener {
+            try {
+                val name = edtName?.text?.toString()?.trim() ?: ""
+
+                if (name.isEmpty()) {
+                    tvGreetingResult?.text = getString(R.string.null_text)
+                } else {
+                    tvGreetingResult?.text = getString(R.string.greeting_format, name)
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+                tvGreetingResult?.text = getString(R.string.null_text)
             }
         }
     }
