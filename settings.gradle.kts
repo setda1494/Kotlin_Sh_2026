@@ -22,6 +22,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "KotillnBascics"
+rootProject.name = "20231549_app_w05"
 include(":app")
  

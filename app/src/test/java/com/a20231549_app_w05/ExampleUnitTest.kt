@@ -1,4 +1,4 @@
-package com.kotillnbascics
+package com.a20231549_app_w05
 
 import org.junit.Test
 

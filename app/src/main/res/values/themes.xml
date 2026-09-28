@@ -1,9 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.KotillnBascics" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme._20231549_app_w05" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
-    <style name="Theme.KotillnBascics" parent="Base.Theme.KotillnBascics" />
+    <style name="Theme._20231549_app_w05" parent="Base.Theme._20231549_app_w05" />
 </resources>
