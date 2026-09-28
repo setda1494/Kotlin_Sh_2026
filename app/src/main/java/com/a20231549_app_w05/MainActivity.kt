@@ -1,6 +1,7 @@
 package com.a20231549_app_w05
 
 import android.os.Bundle
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -25,6 +26,11 @@ class MainActivity : AppCompatActivity() {
         val edtDan = findViewById<EditText>(R.id.edtDan)
         val btnOutput = findViewById<Button>(R.id.btnOutput)
         val tvResult = findViewById<TextView>(R.id.tvResult)
+
+        edtDan.setOnClickListener {
+            val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.showSoftInput(edtDan, 0)
+        }
 
         btnOutput.setOnClickListener {
             val strDan = edtDan.text.toString().trim()
