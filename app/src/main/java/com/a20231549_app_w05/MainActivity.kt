@@ -80,7 +80,7 @@ class MainActivity : AppCompatActivity() {
         btnOutput?.setOnClickListener {
             try {
                 val strDan = edtDan?.text?.toString()?.trim() ?: ""
-                val danNumber = strDan.toIntOrNull()
+                val danNumber = strDan.replace(Regex("[^0-9]"), "").toIntOrNull()
 
                 if (danNumber == null) {
                     tvResult?.text = getString(R.string.null_text)
@@ -100,7 +100,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        // 2번 앱: 인사 출력 ("안녕 XXX")
+        // 2번 앱: 인사 출력 ("안녕 XXX", 한글 및 영문 등 모든 이름 지원)
         btnGreeting?.setOnClickListener {
             try {
                 val name = edtName?.text?.toString()?.trim() ?: ""
